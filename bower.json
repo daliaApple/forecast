@@ -1,0 +1,21 @@
+{
+  "name": "forecast",
+  "description": "forecast app",
+  "main": "index.js",
+  "authors": [
+    "dali81@gmail.com"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/daliaApple/forecast",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}
