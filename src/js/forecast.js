@@ -1,12 +1,12 @@
 
-var forecastUI = (function() {
+var forecastUI = (function () {
+	var days = 5;
 
 	function displayForecastData() {
 		$("#apiData").append(" <i class=\"fa fa-circle-o-notch fa-spin\"></i> Loading... ");
-		forecastBehavior.getLocationAndForecastData(function(position) {
+		forecastBehavior.getLocationAndForecastData(function (position) {
 			forecastUI.showPositionForecastData(position);
-        },
-		function(message) {
+		}, function (message) {
 			$("#apiData").text(message);
 		});
 	}
@@ -14,10 +14,9 @@ var forecastUI = (function() {
 	function showPositionForecastData(position) {
 		var currentLatitude = position.coords.latitude;
 		var currentLongitude = position.coords.longitude;
-		forecastBehavior.getForecastData(currentLatitude, currentLongitude, function(data) {
-			forecastUI.displayData(data, 5);
-        },
-		function(message) {
+		forecastBehavior.getForecastData(currentLatitude, currentLongitude, function (data) {
+			forecastUI.displayData(data, days);
+		}, function (message) {
 			$("#apiData").text(message);
 		});
 	}
@@ -41,30 +40,30 @@ var forecastUI = (function() {
 	}
 
 	var api = {
-        displayForecastData: displayForecastData,
+		displayForecastData: displayForecastData,
 		showPositionForecastData: showPositionForecastData,
 		displayData: displayData
-    };
+	};
 
-    return api;
-	
+	return api;
+
 })();
 
-var forecastBehavior = (function() {
-   
+var forecastBehavior = (function () {
+
 	function getForecastData(latitude, longitude, onSuccess, onError) {
 		$.ajax({
-            type: 'GET',
-            dataType: 'jsonp',
-            cache: false,
-            url: 'https://api.darksky.net/forecast/c346f07763411b8a86bd8d708a7c2312/' + latitude + ',' + longitude,
-            success: function (data) {
+			type: 'GET',
+			dataType: 'jsonp',
+			cache: false,
+			url: 'https://api.darksky.net/forecast/c346f07763411b8a86bd8d708a7c2312/' + latitude + ',' + longitude,
+			success: function (data) {
 				onSuccess(data);
-            },
-            error: function (xhr, textStatus, errorThrown) {
+			},
+			error: function (xhr, textStatus, errorThrown) {
 				onError("Failed to get weather information.");
-            }
-        });
+			}
+		});
 	}
 
 	function getLocationAndForecastData(onSuccess, onError) {
@@ -75,12 +74,12 @@ var forecastBehavior = (function() {
 		}
 	}
 
-    var api = {
-        getForecastData: getForecastData,
+	var api = {
+		getForecastData: getForecastData,
 		getLocationAndForecastData: getLocationAndForecastData
-    };
+	};
 
-    return api;
+	return api;
 
 })();
 

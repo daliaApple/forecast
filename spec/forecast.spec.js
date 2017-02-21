@@ -86,7 +86,7 @@ describe("forecast UI", function () {
     describe("displayForecastData function", function () {
 
         it("should call the getLocationAndForecastData function", function () {
-            forecastBehaviorSpy = spyOn(forecast.forecastBehavior, "getLocationAndForecastData");
+            spyOn(forecast.forecastBehavior, "getLocationAndForecastData");
 
             forecast.forecastUI.displayForecastData();
 
@@ -94,7 +94,7 @@ describe("forecast UI", function () {
         });
 
         it("should show loading icon", function () {
-            forecastBehaviorSpy = spyOn(forecast.forecastBehavior, "getLocationAndForecastData");
+            spyOn(forecast.forecastBehavior, "getLocationAndForecastData");
 
             forecast.forecastUI.displayForecastData();
 
@@ -103,7 +103,7 @@ describe("forecast UI", function () {
 
         it("should show error on error", function () {
             var errorMsg = "error!";
-            forecastBehaviorSpy = spyOn(forecast.forecastBehavior, "getLocationAndForecastData").and.callFake(function (onSuccess, onError) {
+            spyOn(forecast.forecastBehavior, "getLocationAndForecastData").and.callFake(function (onSuccess, onError) {
                 onError(errorMsg);
             });
 
@@ -130,7 +130,7 @@ describe("forecast UI", function () {
     describe("showPositionForecastData function", function () {
 
         it("should call the getForecastData function", function () {
-            forecastBehaviorSpy = spyOn(forecast.forecastBehavior, "getForecastData");
+            spyOn(forecast.forecastBehavior, "getForecastData");
 
             forecast.forecastUI.showPositionForecastData(testPosition);
 
@@ -140,7 +140,7 @@ describe("forecast UI", function () {
 
         it("should show error on error", function () {
             var errorMsg = "error!";
-            forecastBehaviorSpy = spyOn(forecast.forecastBehavior, "getForecastData").and.callFake(function (latitude, longitude, onSuccess, onError) {
+            spyOn(forecast.forecastBehavior, "getForecastData").and.callFake(function (latitude, longitude, onSuccess, onError) {
                 onError(errorMsg);
             });
 
